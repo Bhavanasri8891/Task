@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Scheme Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2E86C1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            padding: 10px;
+            width: 70%;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2E86C1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .scheme-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+        .scheme-card h3 {
+            margin: 0 0 10px 0;
+        }
+        .scheme-card p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Government Scheme Finder</h1>
+</header>
+
+<div class="container">
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search schemes...">
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Education">Education</option>
+            <option value="Health">Health</option>
+            <option value="Employment">Employment</option>
+            <option value="Housing">Housing</option>
+        </select>
+        <button onclick="searchSchemes()">Search</button>
+    </div>
+
+    <div id="schemesList">
+        <!-- Scheme cards will appear here -->
+        <div class="scheme-card">
+            <h3>Pradhan Mantri Awas Yojana</h3>
+            <p><strong>Category:</strong> Housing</p>
+            <p><strong>Eligibility:</strong> Low-income families</p>
+            <p><strong>Benefits:</strong> Subsidized housing</p>
+        </div>
+        <div class="scheme-card">
+            <h3>Skill India Mission</h3>
+            <p><strong>Category:</strong> Employment</p>
+            <p><strong>Eligibility:</strong> Unemployed youth</p>
+            <p><strong>Benefits:</strong> Vocational training & certifications</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchSchemes() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const category = document.getElementById('categoryFilter').value;
+        const cards = document.querySelectorAll('.scheme-card');
+
+        cards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const cardCategory = card.querySelector('p').textContent;
+
+            if ((title.includes(searchTerm) || searchTerm === '') &&
+                (cardCategory.includes(category) || category === '')) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
